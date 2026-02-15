@@ -6,6 +6,11 @@
   color-scheme: light;
 }
 
+html,
+body {
+  overflow-x: hidden;
+}
+
 body {
   @apply bg-slate-50 text-slate-900 antialiased;
 }
@@ -19,5 +24,11 @@ body {
 }
 
 .focus-ring {
-  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2;
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2;
+}
+
+@media (max-width: 639px) {
+  body {
+    padding-bottom: 84px;
+  }
 }

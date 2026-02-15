@@ -1,59 +1,44 @@
-import { CTAButton } from "@/components/CTAButton";
-import { FAQAccordion } from "@/components/FAQAccordion";
-
-const details = [
-  { title: "Handyman + Repair Visits", includes: ["Door and trim repairs", "Hardware installs", "Minor carpentry fixes"], timeline: "1 day", starting: "$249" },
-  { title: "Drywall + Paint Prep", includes: ["Patch and skim coat", "Crack and seam repair", "Prime-ready finish"], timeline: "1-2 days", starting: "$399" },
-  { title: "Interior Painting", includes: ["Walls and ceilings", "Trim and doors", "Clean masking and prep"], timeline: "2-4 days", starting: "$799" },
-  { title: "Flooring Install", includes: ["LVP/Laminate install", "Baseboard reset", "Transition strip fitting"], timeline: "2-5 days", starting: "$1,499" },
-  { title: "Minor Remodels", includes: ["Bathroom refreshes", "Accent wall builds", "Fixture upgrades"], timeline: "1-2 weeks", starting: "$2,900" },
-  { title: "Mounting + Utility Services", includes: ["TV and shelf mounting", "Light plumbing fixture swap", "Light electrical fixture replacement"], timeline: "Same day", starting: "$179" },
-];
-
-const faqs = [
-  { question: "Can I bundle services in one project?", answer: "Yes. Many clients combine drywall, painting, and mounting in one visit." },
-  { question: "Do you provide itemized estimates?", answer: "Absolutely. You’ll receive a clear scope, timeline, and pricing breakdown." },
-  { question: "What if I’m not sure which service I need?", answer: "Tell us your goal and we’ll recommend the right scope during estimate." },
-  { question: "Do you work in occupied homes?", answer: "Yes, we protect surfaces and keep a clean workspace during active living." },
-  { question: "Do you offer weekend appointments?", answer: "Limited weekend slots are available based on project type." },
-];
+import { Button } from "@/components/Button";
+import { SectionHeading } from "@/components/SectionHeading";
+import { services } from "@/lib/data";
 
 export default function ServicesPage() {
   return (
-    <div className="container section-pad">
-      <section className="mb-12 rounded-2xl bg-brand-50 p-8">
-        <h1 className="text-4xl font-bold text-brand-900">Services</h1>
-        <p className="mt-3 max-w-2xl text-slate-700">Smart upgrades and reliable repairs for Staten Island + South Brooklyn homeowners. Built around clear timelines and strong communication.</p>
+    <>
+      <section className="bg-slate-900 py-16 text-white sm:py-20">
+        <div className="container">
+          <p className="text-sm font-semibold uppercase tracking-[0.14em] text-amber-400">Services</p>
+          <h1 className="mt-3 text-4xl font-bold sm:text-5xl">Handyman and light remodeling services that fit real NYC homes.</h1>
+          <p className="mt-4 max-w-3xl text-slate-300">From quick repairs to multi-day improvement projects, we focus on clean workmanship, clear scope, and dependable timelines.</p>
+        </div>
       </section>
 
-      <section className="space-y-8">
-        {details.map((service, idx) => (
-          <div key={service.title} className="rounded-xl border border-slate-200 bg-white p-6">
-            <h2 className="text-2xl font-semibold">{service.title}</h2>
-            <p className="mt-2 text-sm text-slate-600">Typical timeline: {service.timeline}</p>
-            <p className="text-sm font-semibold text-brand-700">Starting at: {service.starting}</p>
-            <ul className="mt-3 list-disc space-y-1 pl-5 text-sm text-slate-700">
-              {service.includes.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-            {(idx + 1) % 2 === 0 && (
-              <div className="mt-6 rounded-lg bg-slate-100 p-4">
-                <p className="text-sm font-medium">Need this service done soon?</p>
-                <div className="mt-2 flex gap-3">
-                  <CTAButton href="/contact">Request a Quote</CTAButton>
-                  <CTAButton href="tel:+17185550199" variant="secondary">Call Now</CTAButton>
-                </div>
+      <section className="container section-pad">
+        <SectionHeading title="What we do" description="Each service includes straightforward communication and professional cleanup before we leave." />
+        <div className="space-y-6">
+          {services.map((service) => (
+            <article key={service.slug} className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+              <h2 className="text-2xl font-semibold text-slate-900">{service.title}</h2>
+              <p className="mt-2 text-slate-600">{service.description}</p>
+              <ul className="mt-4 grid list-disc gap-2 pl-5 text-sm text-slate-700 sm:grid-cols-2">
+                {service.includes.map((item) => <li key={item}>{item}</li>)}
+              </ul>
+              <div className="mt-5 flex flex-wrap items-center justify-between gap-3 rounded-xl bg-slate-50 p-4">
+                <p className="text-sm font-medium text-slate-700"><span className="font-semibold">Typical timeline:</span> {service.timeline}</p>
+                <Button href="/contact">Get Quote for {service.title}</Button>
               </div>
-            )}
-          </div>
-        ))}
+            </article>
+          ))}
+        </div>
       </section>
 
-      <section className="mt-14 max-w-3xl">
-        <h2 className="text-3xl font-bold">Service FAQ</h2>
-        <div className="mt-5"><FAQAccordion items={faqs} /></div>
+      <section className="container pb-20">
+        <div className="rounded-2xl border border-amber-200 bg-amber-50 p-8">
+          <h3 className="text-2xl font-bold text-slate-900">Service Area</h3>
+          <p className="mt-3 text-slate-700">Primary coverage includes all Staten Island neighborhoods and South Brooklyn communities including Bay Ridge, Sunset Park, Bensonhurst, and surrounding ZIP codes.</p>
+          <p className="mt-2 text-slate-700">Not sure if you’re in range? Call <a href="tel:+17185550199" className="font-semibold text-slate-900">(718) 555-0199</a> and we’ll confirm immediately.</p>
+        </div>
       </section>
-    </div>
+    </>
   );
 }
