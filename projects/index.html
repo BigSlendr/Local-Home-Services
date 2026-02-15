@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects | North Peak Home Services</title>
+  <link rel="stylesheet" href="/assets/css/styles.css" />
+</head>
+<body>
+<header class="site-header"><div class="container header-inner"><a class="logo" href="/">North Peak <span>Home Services</span></a><button class="nav-toggle" data-nav-toggle aria-expanded="false">Menu</button><nav class="site-nav" data-nav-menu><div class="nav-links"><a href="/">Home</a><a href="/services/">Services</a><a href="/projects/">Projects</a><a href="/about/">About</a><a href="/contact/">Contact</a></div></nav><div class="header-ctas"><a class="btn btn-ghost" href="tel:+17185550199">Call Now</a><a class="btn btn-primary" href="/contact/">Request a Quote</a></div></div></header>
+<main>
+  <section class="page-hero"><div class="container"><span class="eyebrow">Recent work</span><h1 class="section-title">Project gallery</h1><p>Browse completed work across kitchen, bath, painting, flooring, and exterior repair scopes.</p></div></section>
+  <section class="section"><div class="container">
+    <div class="filter-row">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="kitchen">Kitchen</button>
+      <button class="filter-btn" data-filter="bathroom">Bathroom</button>
+      <button class="filter-btn" data-filter="interior">Interior</button>
+      <button class="filter-btn" data-filter="exterior">Exterior</button>
+    </div>
+    <div class="grid-3">
+      <article class="card project-card" data-project data-category="kitchen" data-title="Bay Ridge Kitchen Refresh" data-description="Cabinet refacing, quartz install, backsplash tile, and warm layered lighting in a 17-day timeline."><div class="project-thumb"></div><h3>Bay Ridge Kitchen Refresh</h3><p class="project-meta">Kitchen · South Brooklyn</p></article>
+      <article class="card project-card" data-project data-category="bathroom" data-title="Staten Island Bathroom Remodel" data-description="Complete demo and rebuild with curbless shower, niche storage, and matte black fixtures."><div class="project-thumb"></div><h3>Primary Bath Remodel</h3><p class="project-meta">Bathroom · Staten Island</p></article>
+      <article class="card project-card" data-project data-category="interior" data-title="Townhome Interior Paint" data-description="Full interior repaint with trim restoration and minimal homeowner disruption."><div class="project-thumb"></div><h3>Townhome Paintover</h3><p class="project-meta">Interior · Dyker Heights</p></article>
+      <article class="card project-card" data-project data-category="interior" data-title="Whole-Floor LVP Install" data-description="Removed dated flooring and installed waterproof LVP with coordinated stair noses."><div class="project-thumb"></div><h3>Waterproof LVP Upgrade</h3><p class="project-meta">Interior · Staten Island</p></article>
+      <article class="card project-card" data-project data-category="exterior" data-title="Brownstone Entry Repair" data-description="Repaired masonry, rebuilt trim details, and weather-sealed exposed surfaces."><div class="project-thumb"></div><h3>Brownstone Entry Repair</h3><p class="project-meta">Exterior · South Brooklyn</p></article>
+      <article class="card project-card" data-project data-category="kitchen" data-title="Compact Kitchen Rework" data-description="Space-planning update with improved workflow, storage, and under-cabinet task lighting."><div class="project-thumb"></div><h3>Compact Kitchen Rework</h3><p class="project-meta">Kitchen · Staten Island</p></article>
+    </div>
+  </div></section>
+</main>
+<footer class="site-footer"><div class="container">© <span id="year"></span> North Peak Home Services</div></footer>
+<div class="mobile-cta"><a class="btn btn-ghost" href="tel:+17185550199">Call Now</a><a class="btn btn-primary" href="/contact/">Request a Quote</a></div>
+<div class="modal" data-modal><div class="modal-content"><button class="modal-close" data-modal-close>Close</button><h3 data-modal-title>Project detail</h3><p data-modal-body></p><p><a class="btn btn-primary" href="/contact/">Request a similar project quote</a></p></div></div>
+<script src="/assets/js/main.js" defer></script><script>document.getElementById('year').textContent=new Date().getFullYear();</script>
+</body>
+</html>

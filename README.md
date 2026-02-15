@@ -1,62 +1,50 @@
-# North Peak Home Services Demo
+# North Peak Home Services (Static Website Demo)
 
-A conversion-focused lead-generation demo website for a fictional local contractor brand, **North Peak Home Services**.
+This repository is a **static HTML/CSS/JS demo site** for **North Peak Home Services**.
+It is designed to work well as a lightweight GitHub Pages portfolio/marketing site.
 
-## Purpose
+## Stack
 
-This project is designed to generate:
-- Phone calls (`Call Now` CTAs)
-- Quote requests (minimal contact form)
+- HTML (multi-page)
+- CSS (custom responsive styles)
+- Vanilla JavaScript (UI interactions)
 
-No checkout or ecommerce flows are included.
-
-## Tech Stack
-
-- Next.js (App Router) + TypeScript
-- Tailwind CSS
-- Local API route for form submission (`/api/contact`)
+No frameworks, no npm dependencies, and no build tooling are required.
 
 ## Pages
 
-- `/` Home
-- `/services`
-- `/projects`
-- `/about`
-- `/contact`
+- `/index.html`
+- `/services/index.html`
+- `/projects/index.html`
+- `/about/index.html`
+- `/contact/index.html`
 
-## Reusable Components
+## Local Preview
 
-- `Header`
-- `Footer`
-- `CTAButton`
-- `TestimonialCard`
-- `ServiceCard`
-- `FAQAccordion`
-- `GalleryGrid`
-- `ContactForm`
-- `FloatingMobileCTA`
+You can open `index.html` directly in your browser, or serve the folder with any static server.
 
-## Running Locally
+Example with Python:
 
 ```bash
-npm install
-npm run dev
+python3 -m http.server 8080
 ```
 
-Then visit `http://localhost:3000`.
+Then open `http://localhost:8080`.
 
-## Contact Form Behavior
+## Enable GitHub Pages
 
-The contact form POSTs to `/api/contact` and logs submission payloads server-side.
+1. Push this repository to GitHub.
+2. Go to **Repository Settings → Pages**.
+3. Under **Build and deployment**, set:
+   - **Source:** `Deploy from a branch`
+   - **Branch:** `main` (or your default branch)
+   - **Folder:** `/ (root)`
+4. Save and wait for deployment.
+5. Your static site will be live at the Pages URL GitHub provides.
 
-Production TODOs are documented in `src/app/api/contact/route.ts`:
-- Swap log-based handling for Resend/Formspree/email integration
-- Add anti-spam protection (rate limiting/honeypot)
+## Brand Details Used
 
-## What to Customize for a Real Client
-
-1. Replace brand name, phone number, service area, and address.
-2. Replace placeholder project visuals and testimonials with real approved assets.
-3. Connect form API route to email/CRM and add analytics event tracking.
-4. Update pricing language and scope bullets to match actual operations.
-5. Add legal pages (privacy policy/terms) and real social links.
+- **Business:** North Peak Home Services
+- **Phone:** (718) 555-0199
+- **Service Area:** Staten Island + South Brooklyn
+- **Primary CTA:** Request a Quote (`/contact/`)
