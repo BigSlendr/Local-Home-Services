@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact | North Peak Home Services</title>
+  <link rel="stylesheet" href="/assets/css/styles.css" />
+</head>
+<body>
+<header class="site-header"><div class="container header-inner"><a class="logo" href="/">North Peak <span>Home Services</span></a><button class="nav-toggle" data-nav-toggle aria-expanded="false">Menu</button><nav class="site-nav" data-nav-menu><div class="nav-links"><a href="/">Home</a><a href="/services/">Services</a><a href="/projects/">Projects</a><a href="/about/">About</a><a href="/contact/">Contact</a></div></nav><div class="header-ctas"><a class="btn btn-ghost" href="tel:+17185550199">Call Now</a><a class="btn btn-primary" href="/contact/">Request a Quote</a></div></div></header>
+<main>
+  <section class="page-hero"><div class="container"><span class="eyebrow">Request a quote</span><h1 class="section-title">Tell us about your project.</h1><p>We serve homeowners across Staten Island and South Brooklyn. Most quote requests receive a response within one business day.</p></div></section>
+  <section class="section"><div class="container contact-wrap">
+    <aside class="card"><h2>Contact info</h2><ul class="info-list"><li><strong>Phone:</strong> <a href="tel:+17185550199">(718) 555-0199</a></li><li><strong>Service Area:</strong> Staten Island + South Brooklyn</li><li><strong>Hours:</strong> Mon–Sat, 8:00 AM–6:00 PM</li></ul></aside>
+    <article class="card"><h2>Quote form</h2>
+      <form data-contact-form novalidate>
+        <div><label for="name">Name *</label><input id="name" name="name" required /><div class="error" data-error-for="name"></div></div>
+        <div><label for="phone">Phone *</label><input id="phone" name="phone" required /><div class="error" data-error-for="phone"></div></div>
+        <div><label for="email">Email (optional)</label><input id="email" name="email" type="email" /></div>
+        <div><label for="zip">ZIP Code *</label><input id="zip" name="zip" required /><div class="error" data-error-for="zip"></div></div>
+        <div><label for="service">Service Needed</label><select id="service" name="service"><option>Kitchen Upgrade</option><option>Bathroom Remodel</option><option>Painting</option><option>Flooring</option><option>Repairs / Punch List</option><option>General Inquiry</option></select></div>
+        <div><label for="message">Project Message (optional)</label><textarea id="message" name="message" rows="5"></textarea></div>
+        <button class="btn btn-primary" type="submit">Submit Request</button>
+      </form>
+      <div class="success-box" data-form-success></div>
+    </article>
+  </div></section>
+</main>
+<footer class="site-footer"><div class="container">© <span id="year"></span> North Peak Home Services</div></footer>
+<div class="mobile-cta"><a class="btn btn-ghost" href="tel:+17185550199">Call Now</a><a class="btn btn-primary" href="/contact/">Request a Quote</a></div>
+<script src="/assets/js/main.js" defer></script><script>document.getElementById('year').textContent=new Date().getFullYear();</script>
+</body>
+</html>
