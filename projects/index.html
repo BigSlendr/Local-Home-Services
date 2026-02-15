@@ -4,33 +4,87 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Projects | North Peak Home Services</title>
-  <link rel="stylesheet" href="/assets/css/styles.css" />
+  <link rel="stylesheet" href="../assets/css/styles.css" />
 </head>
 <body>
-<header class="site-header"><div class="container header-inner"><a class="logo" href="/">North Peak <span>Home Services</span></a><button class="nav-toggle" data-nav-toggle aria-expanded="false">Menu</button><nav class="site-nav" data-nav-menu><div class="nav-links"><a href="/">Home</a><a href="/services/">Services</a><a href="/projects/">Projects</a><a href="/about/">About</a><a href="/contact/">Contact</a></div></nav><div class="header-ctas"><a class="btn btn-ghost" href="tel:+17185550199">Call Now</a><a class="btn btn-primary" href="/contact/">Request a Quote</a></div></div></header>
-<main>
-  <section class="page-hero"><div class="container"><span class="eyebrow">Recent work</span><h1 class="section-title">Project gallery</h1><p>Browse completed work across kitchen, bath, painting, flooring, and exterior repair scopes.</p></div></section>
-  <section class="section"><div class="container">
-    <div class="filter-row">
-      <button class="filter-btn active" data-filter="all">All</button>
-      <button class="filter-btn" data-filter="kitchen">Kitchen</button>
-      <button class="filter-btn" data-filter="bathroom">Bathroom</button>
-      <button class="filter-btn" data-filter="interior">Interior</button>
-      <button class="filter-btn" data-filter="exterior">Exterior</button>
+  <header class="site-header">
+    <div class="container header-grid">
+      <a href="../" class="brand">North Peak Home Services</a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+      <nav class="site-nav">
+        <ul>
+          <li><a href="../">Home</a></li>
+          <li><a href="../services/">Services</a></li>
+          <li><a href="../projects/" class="active">Projects</a></li>
+          <li><a href="../about/">About</a></li>
+          <li><a href="../contact/">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="header-cta">
+        <a class="header-phone" href="tel:+15550139001">(555) 013-9001</a>
+        <a class="btn btn-primary" href="../contact/">Request a Quote</a>
+      </div>
     </div>
-    <div class="grid-3">
-      <article class="card project-card" data-project data-category="kitchen" data-title="Bay Ridge Kitchen Refresh" data-description="Cabinet refacing, quartz install, backsplash tile, and warm layered lighting in a 17-day timeline."><div class="project-thumb"></div><h3>Bay Ridge Kitchen Refresh</h3><p class="project-meta">Kitchen · South Brooklyn</p></article>
-      <article class="card project-card" data-project data-category="bathroom" data-title="Staten Island Bathroom Remodel" data-description="Complete demo and rebuild with curbless shower, niche storage, and matte black fixtures."><div class="project-thumb"></div><h3>Primary Bath Remodel</h3><p class="project-meta">Bathroom · Staten Island</p></article>
-      <article class="card project-card" data-project data-category="interior" data-title="Townhome Interior Paint" data-description="Full interior repaint with trim restoration and minimal homeowner disruption."><div class="project-thumb"></div><h3>Townhome Paintover</h3><p class="project-meta">Interior · Dyker Heights</p></article>
-      <article class="card project-card" data-project data-category="interior" data-title="Whole-Floor LVP Install" data-description="Removed dated flooring and installed waterproof LVP with coordinated stair noses."><div class="project-thumb"></div><h3>Waterproof LVP Upgrade</h3><p class="project-meta">Interior · Staten Island</p></article>
-      <article class="card project-card" data-project data-category="exterior" data-title="Brownstone Entry Repair" data-description="Repaired masonry, rebuilt trim details, and weather-sealed exposed surfaces."><div class="project-thumb"></div><h3>Brownstone Entry Repair</h3><p class="project-meta">Exterior · South Brooklyn</p></article>
-      <article class="card project-card" data-project data-category="kitchen" data-title="Compact Kitchen Rework" data-description="Space-planning update with improved workflow, storage, and under-cabinet task lighting."><div class="project-thumb"></div><h3>Compact Kitchen Rework</h3><p class="project-meta">Kitchen · Staten Island</p></article>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <h1>Recent Project Transformations</h1>
+        <p>Browse a sample of our work across painting, drywall, flooring, and light remodels.</p>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="container">
+        <div class="filter-row">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="painting">Painting</button>
+          <button class="filter-btn" data-filter="drywall">Drywall</button>
+          <button class="filter-btn" data-filter="flooring">Flooring</button>
+          <button class="filter-btn" data-filter="remodel">Remodel</button>
+        </div>
+
+        <div class="projects-grid">
+          <article class="project-card" data-category="painting">
+            <div class="project-image"><img src="https://images.unsplash.com/photo-1616046229478-9901c5536a45?auto=format&fit=crop&w=900&q=80" alt="Painted living room" /></div>
+            <div class="project-body"><span class="badge">Painting</span><h3>Whole-Home Interior Refresh</h3><button class="btn btn-outline project-open" data-title="Whole-Home Interior Refresh" data-description="A 2,900 sq ft repaint with trim refinishing and accent wall design completed in 4 days." data-image="https://images.unsplash.com/photo-1616046229478-9901c5536a45?auto=format&fit=crop&w=1200&q=80">View Project</button></div>
+          </article>
+
+          <article class="project-card" data-category="drywall">
+            <div class="project-image"><img src="https://images.unsplash.com/photo-1616593969747-4797dc75033e?auto=format&fit=crop&w=900&q=80" alt="Drywall repair project" /></div>
+            <div class="project-body"><span class="badge">Drywall</span><h3>Ceiling Crack Restoration</h3><button class="btn btn-outline project-open" data-title="Ceiling Crack Restoration" data-description="Structural crack repair and smooth texture blending with paint match for a seamless finish." data-image="https://images.unsplash.com/photo-1616593969747-4797dc75033e?auto=format&fit=crop&w=1200&q=80">View Project</button></div>
+          </article>
+
+          <article class="project-card" data-category="flooring">
+            <div class="project-image"><img src="https://images.unsplash.com/photo-1617104551722-3b2d51366434?auto=format&fit=crop&w=900&q=80" alt="Flooring installation" /></div>
+            <div class="project-body"><span class="badge">Flooring</span><h3>LVP Main Floor Upgrade</h3><button class="btn btn-outline project-open" data-title="LVP Main Floor Upgrade" data-description="Old carpet replaced with waterproof LVP and custom transition work in 3 days." data-image="https://images.unsplash.com/photo-1617104551722-3b2d51366434?auto=format&fit=crop&w=1200&q=80">View Project</button></div>
+          </article>
+
+          <article class="project-card" data-category="remodel">
+            <div class="project-image"><img src="https://images.unsplash.com/photo-1556912172-45b7abe8b7e1?auto=format&fit=crop&w=900&q=80" alt="Kitchen remodel" /></div>
+            <div class="project-body"><span class="badge">Remodel</span><h3>Kitchen Facelift Package</h3><button class="btn btn-outline project-open" data-title="Kitchen Facelift Package" data-description="Cabinet paint, hardware, backsplash touchups, and lighting upgrades finished in 8 days." data-image="https://images.unsplash.com/photo-1556912172-45b7abe8b7e1?auto=format&fit=crop&w=1200&q=80">View Project</button></div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal" id="project-modal" aria-hidden="true">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:1rem;">
+          <h3 id="modal-title">Project Details</h3>
+          <button class="modal-close" data-close-modal aria-label="Close modal">×</button>
+        </div>
+        <img id="modal-image" src="" alt="Project detail image" />
+        <p id="modal-text"></p>
+      </div>
     </div>
-  </div></section>
-</main>
-<footer class="site-footer"><div class="container">© <span id="year"></span> North Peak Home Services</div></footer>
-<div class="mobile-cta"><a class="btn btn-ghost" href="tel:+17185550199">Call Now</a><a class="btn btn-primary" href="/contact/">Request a Quote</a></div>
-<div class="modal" data-modal><div class="modal-content"><button class="modal-close" data-modal-close>Close</button><h3 data-modal-title>Project detail</h3><p data-modal-body></p><p><a class="btn btn-primary" href="/contact/">Request a similar project quote</a></p></div></div>
-<script src="/assets/js/main.js" defer></script><script>document.getElementById('year').textContent=new Date().getFullYear();</script>
+  </div>
+
+  <footer class="site-footer"><div class="container"><strong>North Peak Home Services</strong></div></footer>
+  <div class="mobile-sticky"><a href="tel:+15550139001">Call Now</a><a href="../contact/">Request Quote</a></div>
+  <script src="../assets/js/main.js"></script>
 </body>
 </html>
