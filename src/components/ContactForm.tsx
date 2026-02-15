@@ -1,135 +1,110 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import { cn } from "@/lib/cn";
 
-type FormState = {
-  name: string;
-  phone: string;
-  email: string;
-  zip: string;
-  service: string;
-  message: string;
-};
+const initialData = { name: "", phone: "", email: "", zip: "", service: "", message: "" };
 
-const initialState: FormState = { name: "", phone: "", email: "", zip: "", service: "Handyman", message: "" };
+type FormData = typeof initialData;
 
 export function ContactForm() {
-  const [form, setForm] = useState<FormState>(initialState);
-  const [errors, setErrors] = useState<Partial<Record<keyof FormState, string>>>({});
-  const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState<FormData>(initialData);
+  const [errors, setErrors] = useState<Partial<Record<keyof FormData, string>>>({});
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
 
   const validate = () => {
-    const nextErrors: Partial<Record<keyof FormState, string>> = {};
-    if (!form.name.trim()) nextErrors.name = "Name is required.";
-    if (!form.phone.trim()) nextErrors.phone = "Phone is required.";
-    if (!form.zip.trim()) nextErrors.zip = "ZIP code is required.";
-    setErrors(nextErrors);
-    return Object.keys(nextErrors).length === 0;
+    const nextErrors: Partial<Record<keyof FormData, string>> = {};
+    if (!data.name.trim()) nextErrors.name = "Name is required.";
+    if (!data.phone.trim()) nextErrors.phone = "Phone is required.";
+    if (!data.zip.trim()) nextErrors.zip = "ZIP code is required.";
+    if (!data.service) nextErrors.service = "Please select a service.";
+    return nextErrors;
   };
 
   const onSubmit = async (event: FormEvent) => {
     event.preventDefault();
-    if (!validate()) return;
-
-    setLoading(true);
-    const response = await fetch("/api/contact", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(form),
-    });
-    setLoading(false);
-
-    if (response.ok) {
-      setSubmitted(true);
-      setForm(initialState);
+    const nextErrors = validate();
+    setErrors(nextErrors);
+    if (Object.keys(nextErrors).length) return;
+    setStatus("loading");
+    try {
+      const response = await fetch("/api/quote", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      if (!response.ok) throw new Error("Request failed");
+      setData(initialData);
+      setStatus("success");
+    } catch {
+      setStatus("error");
     }
   };
 
-  if (submitted) {
-    return (
-      <div className="rounded-xl border border-emerald-200 bg-emerald-50 p-6">
-        <h3 className="text-lg font-semibold text-emerald-900">Thanks! We got your request.</h3>
-        <p className="mt-2 text-sm text-emerald-800">Next step: we’ll call you within one business day to confirm details and schedule your estimate.</p>
-      </div>
-    );
-  }
-
   return (
-    <form onSubmit={onSubmit} className="space-y-4 rounded-xl border border-slate-200 bg-white p-6 shadow-sm" noValidate>
-      {[
-        { key: "name", label: "Name", type: "text", required: true },
-        { key: "phone", label: "Phone", type: "tel", required: true },
-        { key: "email", label: "Email", type: "email", required: false },
-        { key: "zip", label: "ZIP code", type: "text", required: true },
-      ].map((field) => {
-        const key = field.key as keyof FormState;
-        return (
-          <div key={field.key}>
-            <label htmlFor={field.key} className="mb-1 block text-sm font-medium text-slate-700">
-              {field.label} {field.required ? "*" : ""}
-            </label>
+    <form onSubmit={onSubmit} className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+      <div className="grid gap-4 sm:grid-cols-2">
+        {[
+          { name: "name", label: "Name*", type: "text" },
+          { name: "phone", label: "Phone*", type: "tel" },
+          { name: "email", label: "Email", type: "email" },
+          { name: "zip", label: "ZIP*", type: "text" },
+        ].map((field) => (
+          <div key={field.name}>
+            <label htmlFor={field.name} className="mb-1 block text-sm font-medium text-slate-700">{field.label}</label>
             <input
-              id={field.key}
+              id={field.name}
               type={field.type}
-              value={form[key]}
-              onChange={(event) => setForm((prev) => ({ ...prev, [key]: event.target.value }))}
-              aria-invalid={Boolean(errors[key])}
-              aria-describedby={errors[key] ? `${field.key}-error` : undefined}
-              className="focus-ring w-full rounded-lg border border-slate-300 px-3 py-2"
+              value={data[field.name as keyof FormData]}
+              onChange={(e) => setData((prev) => ({ ...prev, [field.name]: e.target.value }))}
+              className={cn("w-full rounded-xl border border-slate-300 px-3 py-2 text-sm focus-ring", errors[field.name as keyof FormData] && "border-red-500")}
+              aria-invalid={Boolean(errors[field.name as keyof FormData])}
+              aria-describedby={errors[field.name as keyof FormData] ? `${field.name}-error` : undefined}
             />
-            {errors[key] && (
-              <p id={`${field.key}-error`} className="mt-1 text-xs text-rose-600">
-                {errors[key]}
-              </p>
-            )}
+            {errors[field.name as keyof FormData] ? <p id={`${field.name}-error`} className="mt-1 text-xs text-red-600">{errors[field.name as keyof FormData]}</p> : null}
           </div>
-        );
-      })}
+        ))}
+      </div>
 
-      <div>
-        <label htmlFor="service" className="mb-1 block text-sm font-medium text-slate-700">
-          Service needed
-        </label>
+      <div className="mt-4">
+        <label htmlFor="service" className="mb-1 block text-sm font-medium text-slate-700">Service Needed*</label>
         <select
           id="service"
-          value={form.service}
-          onChange={(event) => setForm((prev) => ({ ...prev, service: event.target.value }))}
-          className="focus-ring w-full rounded-lg border border-slate-300 px-3 py-2"
+          value={data.service}
+          onChange={(e) => setData((prev) => ({ ...prev, service: e.target.value }))}
+          className={cn("w-full rounded-xl border border-slate-300 px-3 py-2 text-sm focus-ring", errors.service && "border-red-500")}
+          aria-invalid={Boolean(errors.service)}
+          aria-describedby={errors.service ? "service-error" : undefined}
         >
-          {[
-            "Handyman",
-            "Drywall",
-            "Painting",
-            "Flooring",
-            "Minor Remodel",
-            "Mounting/TV Install",
-            "Light Plumbing",
-            "Light Electrical",
-          ].map((service) => (
-            <option key={service}>{service}</option>
-          ))}
+          <option value="">Select one</option>
+          <option>Handyman</option>
+          <option>Painting</option>
+          <option>Drywall</option>
+          <option>Flooring</option>
+          <option>Mounting</option>
+          <option>Minor Remodel</option>
+          <option>Light Plumbing</option>
+          <option>Light Electrical</option>
         </select>
+        {errors.service ? <p id="service-error" className="mt-1 text-xs text-red-600">{errors.service}</p> : null}
       </div>
 
-      <div>
-        <label htmlFor="message" className="mb-1 block text-sm font-medium text-slate-700">
-          Message
-        </label>
+      <div className="mt-4">
+        <label htmlFor="message" className="mb-1 block text-sm font-medium text-slate-700">Project Details</label>
         <textarea
           id="message"
-          rows={4}
-          value={form.message}
-          onChange={(event) => setForm((prev) => ({ ...prev, message: event.target.value }))}
-          className="focus-ring w-full rounded-lg border border-slate-300 px-3 py-2"
+          value={data.message}
+          onChange={(e) => setData((prev) => ({ ...prev, message: e.target.value }))}
+          rows={5}
+          className="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm focus-ring"
         />
       </div>
 
-      <p className="text-xs text-slate-500">Trust signal: Licensed & insured • Local references available • No-obligation estimates.</p>
-
-      <button type="submit" disabled={loading} className="focus-ring w-full rounded-lg bg-brand-500 px-4 py-3 font-semibold text-white hover:bg-brand-700 disabled:opacity-70">
-        {loading ? "Sending..." : "Request a Quote"}
+      <button type="submit" disabled={status === "loading"} className="mt-5 w-full rounded-xl bg-amber-500 px-5 py-3 text-sm font-semibold text-slate-900 transition hover:bg-amber-400 disabled:opacity-70">
+        {status === "loading" ? "Sending..." : "Request My Quote"}
       </button>
+      {status === "success" ? <p className="mt-3 text-sm text-emerald-700">Thanks! We got your request and will contact you shortly.</p> : null}
+      {status === "error" ? <p className="mt-3 text-sm text-red-600">Something went wrong. Please call us directly at (718) 555-0199.</p> : null}
     </form>
   );
 }

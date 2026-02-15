@@ -1,22 +1,23 @@
+import type { ReactNode } from "react";
 import type { Metadata } from "next";
 import "./globals.css";
-import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
-import { FloatingMobileCTA } from "@/components/FloatingMobileCTA";
+import { Footer } from "@/components/Footer";
+import { MobileCtaBar } from "@/components/MobileCtaBar";
 
 export const metadata: Metadata = {
   title: "North Peak Home Services",
-  description: "Premium local handyman and home improvement services in Staten Island + South Brooklyn.",
+  description: "Fast, clean, professional home repairs—done right. Serving Staten Island + South Brooklyn.",
 };
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
     <html lang="en">
       <body>
         <Header />
         <main>{children}</main>
         <Footer />
-        <FloatingMobileCTA />
+        <MobileCtaBar />
       </body>
     </html>
   );
